@@ -26,9 +26,10 @@ public class GestionPedidos {
     private  String direccionCliente;
     @Column(name = "telefono_cliente")
     private String telefonoCliente;
-
+    @Column(name = "tipo_arreglo")
     private String tipoArreglo;
     private String ocasion;
+    @Column(name = "fecha_entrega")
     private LocalDate fechaEntrega;
     private BigDecimal presupuesto;
     private String estado;
