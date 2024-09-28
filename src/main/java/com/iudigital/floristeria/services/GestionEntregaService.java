@@ -1,43 +1,41 @@
 package com.iudigital.floristeria.services;
 
-import com.iudigital.floristeria.models.GestionPedidos;
-import com.iudigital.floristeria.services.dtos.GestionPedidosDto;
+import com.iudigital.floristeria.Repository.GestionEntregaRepository;
+import com.iudigital.floristeria.models.GestionEntrega;
+import com.iudigital.floristeria.services.dtos.GestionEntregaDto;
 import jakarta.persistence.EntityNotFoundException;
 
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+@Service
 public class GestionEntregaService {
-    public Optional<GestionPedidos> getPedido(Long id){
-        return pedidosRepository.findById(id);
+    @Autowired
+    private GestionEntregaRepository entregaRepository;
+    public Optional<GestionEntrega> getentrega(Long id){
+        return entregaRepository.findById(id);
     }
-    public List<GestionPedidos> getAll() {
-        return  pedidosRepository.findAll();
-    }
-
-    public GestionPedidos save(GestionPedidos pedidos) {
-        return pedidosRepository.save(pedidos);
+    public List<GestionEntrega> getAll() {
+        return  entregaRepository.findAll();
     }
 
-    public GestionPedidos updatePedido(Long id, GestionPedidosDto pedidosDto) {
-        Optional<GestionPedidos> pedidoExistente = pedidosRepository.findById(id);
-        if (pedidoExistente.isPresent()) {
-            GestionPedidos pedido = pedidoExistente.get();
-            pedido.setNombreCliente(pedidosDto.getNombreCliente());
-            pedido.setApellidoCliente(pedidosDto.getApellidoCliente());
-            pedido.setEmailCliente(pedidosDto.getEmailCliente());
-            pedido.setDireccionCliente(pedidosDto.getDireccionCliente());
-            pedido.setTelefonoCliente(pedidosDto.getTelefonoCliente());
-            pedido.setTipoArreglo(pedidosDto.getTipoArreglo());
-            pedido.setOcasion(pedidosDto.getOcasion());
-            pedido.setFechaEntrega(pedidosDto.getFechaEntrega());
-            pedido.setPresupuesto(pedidosDto.getPresupuesto());
-            pedido.setEstado(pedidosDto.getEstado());
+    public GestionEntrega save(GestionEntrega entregas) {
+        return entregaRepository.save(entregas);
+    }
+
+    public GestionEntrega updateentrega(Long id, GestionEntregaDto entregasDto) {
+        Optional<GestionEntrega> entregaExistente = entregaRepository.findById(id);
+        if (entregaExistente.isPresent()) {
+            GestionEntrega entrega = entregaExistente.get();
+            entrega.setConductor(entregasDto.getConductor());
+            entrega.setEstado(entregasDto.getEstado());
 
 
-            return pedidosRepository.save(pedido);
+            return entregaRepository.save(entrega);
         } else {
-            throw new EntityNotFoundException("Pedido no encontrado");
+            throw new EntityNotFoundException("entrega no encontrado");
         }
     }
 }
