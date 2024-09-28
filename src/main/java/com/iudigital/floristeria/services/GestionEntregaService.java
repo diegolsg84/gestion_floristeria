@@ -33,15 +33,8 @@ public class GestionEntregaService {
             GestionEntrega entrega = entregaExistente.get();
             entrega.setConductor(entregasDto.getConductor());
             entrega.setEstado(entregasDto.getEstado());
-<<<<<<< HEAD
             entrega.setRuta(entregasDto.getRuta());
             entrega.setFechaEntrega(entregasDto.getFechaEntrega());
-=======
-            
-
->>>>>>> d9139825d98d791514cb96586e6193764312bcf3
-
-
             return entregaRepository.save(entrega);
         } else {
             throw new EntityNotFoundException("entrega no encontrado");
