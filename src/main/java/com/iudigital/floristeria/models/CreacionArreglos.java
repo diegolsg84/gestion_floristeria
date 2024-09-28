@@ -20,6 +20,5 @@ public class CreacionArreglos {
     private String variedadFlores;
     private String follaje;
     private String adornos;
-    @Column(name = "costos_adicionales")
-    private BigDecimal costosAdicionales;
+
 }
