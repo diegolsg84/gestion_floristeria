@@ -20,4 +20,7 @@ public class GestionEntrega {
     @Column(name = "fecha_entrega")
     private LocalDate fechaEntrega;
     private String estado;
+    @OneToOne
+    @JoinColumn(name = "gestion_pedidos_id") // Clave foránea
+    private GestionPedidos gestionPedidos;
 }

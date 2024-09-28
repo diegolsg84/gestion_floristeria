@@ -1,9 +1,6 @@
 package com.iudigital.floristeria.models;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,6 +8,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity
 @Table(name = "variedad_flores")
 public class VariedadFlores {
     @jakarta.persistence.Id
@@ -18,4 +16,7 @@ public class VariedadFlores {
     private  Long Id;
     private String flor;
     private Long cantidad;
+    @ManyToOne
+    @JoinColumn(name = "creacion_arreglos_id")
+    private CreacionArreglos creacionArreglos;
 }

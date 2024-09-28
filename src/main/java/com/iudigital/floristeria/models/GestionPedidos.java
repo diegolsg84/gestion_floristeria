@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -35,4 +37,10 @@ public class GestionPedidos {
     private LocalDate fechaEntrega;
     private BigDecimal presupuesto;
     private String estado;
+    @OneToMany(mappedBy = "gestionPedidos", cascade = CascadeType.ALL)
+    private List<CreacionArreglos> creacionArreglos;
+    @OneToMany(mappedBy = "gestionPedidos", cascade = CascadeType.ALL)
+    private List<Finanzas> finanzas;
+    @OneToOne(mappedBy = "gestionPedidos", cascade = CascadeType.ALL)
+    private GestionEntrega gestionEntrega;
 }

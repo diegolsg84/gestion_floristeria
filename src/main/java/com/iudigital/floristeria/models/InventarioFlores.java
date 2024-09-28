@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
+import java.util.List;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -25,5 +27,7 @@ public class InventarioFlores {
     private BigDecimal precioCompra;
     @Column(name = "precio_venta")
     private BigDecimal precioVenta;
+    @OneToMany(mappedBy = "inventarioFlores")
+    private List<CreacionArreglos> creacionArreglos;
 
 }
