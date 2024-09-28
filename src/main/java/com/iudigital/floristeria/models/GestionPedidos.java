@@ -16,6 +16,8 @@ public class GestionPedidos {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(name = "numero_documento")
+    private  Long nuemroDocumento;
     @Column(name = "nombres_cliente")
     private  String nombreCliente;
     @Column(name = "apellidos_cliente")
