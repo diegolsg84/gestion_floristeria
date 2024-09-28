@@ -1,12 +1,166 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reg-Flores</title>
+    <title>Captura de Flor</title>
+    <!-- Enlace a Bootstrap para estilos CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Estilo para centrar el contenedor del formulario */
+        .centered-form {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .form-container {
+            width: 100%;
+            max-width: 600px;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #f8f9fa;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
 </head>
 <body>
-    registrar
-    <h1>udchuvfjdfn</h1>
+    <!-- Fragmento de Thymeleaf para incluir contenido común -->
+    <div th:replace="~{layout :: content}"></div> 
+
+    <style>
+
+        .navbar-toggler {
+            border: none;
+            outline: none;
+        }
+
+        .navbar-toggler-icon {
+            display: inline-block;
+            width: 30px;
+            height: 2px;
+            background-color: #ffffff;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-toggler-icon::before,
+        .navbar-toggler-icon::after {
+            content: '';
+            position: absolute;
+            width: 30px;
+            height: 2px;
+            background-color: #ffffff;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-toggler-icon::before {
+            top: -8px;
+        }
+
+        .navbar-toggler-icon::after {
+            bottom: -8px;
+        }
+
+        .navbar-toggler.collapsed .navbar-toggler-icon {
+            transform: rotate(0);
+        }
+
+        .navbar-toggler.collapsed .navbar-toggler-icon::before {
+            transform: rotate(0);
+            top: -8px;
+        }
+
+        .navbar-toggler.collapsed .navbar-toggler-icon::after {
+            transform: rotate(0);
+            bottom: -8px;
+        }
+
+        .navbar-toggler:not(.collapsed) .navbar-toggler-icon {
+            background-color: transparent;
+        }
+
+        .navbar-toggler:not(.collapsed) .navbar-toggler-icon::before {
+            transform: rotate(45deg);
+            top: 0;
+        }
+
+        .navbar-toggler:not(.collapsed) .navbar-toggler-icon::after {
+            transform: rotate(-45deg);
+            bottom: 0;
+        }
+
+        .nav-link:focus,
+        .navbar-toggler:focus,
+        .form-control:focus,
+        .btn:focus {
+            outline: none !important;
+            box-shadow: none !important; 
+        }
+    </style>
+</head>
+<body>
+    <!-- Fragmento de Thymeleaf para incluir contenido común -->
+    <div th:replace="~{layout :: content}">
+
+         <!-- Barra de navegación -->
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark"     th:fragment="content">
+        <!-- Marca de la barra de navegación -->
+        <a class="navbar-brand " href="#">Floristeria</a>
+        <!-- Botón para colapsar la barra de navegación en pantallas pequeñas -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- Contenido de la barra de navegación colapsable -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <!-- Enlace a la lista de flores -->
+                <li class="nav-item">
+                    <a class="nav-link text-white" th:href="@{/flores/listar}" href="flores.html">Lista de Flores</a>
+                </li>
+                
+                <!-- Enlace a la página de agregar una nueva flor -->
+                <li class="nav-item">
+                    <a class="nav-link text-white" th:href="@{/flores/form}" href="registrar.html">Registrar Flores</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Contenedor central para el formulario -->
+    <div class="container my-5 d-flex justify-content-center">
+        <div class="form-container">
+            <div></div>
+            <h2>Captura de Flor</h2>
+            <!-- Formulario para capturar los datos de la flor -->
+            <form th:action="@{/flores/guardar}" th:object="${flor}" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <!-- Etiqueta y campo para el nombre de la flor -->
+                    <label for="nombre">Nombre</label>
+                    <input type="text" class="form-control" id="nombre" name="nombre" th:field="*{nombre}" placeholder="Ingrese el nombre de la flor" required>
+                </div>
+                <div class="form-group">
+                    <!-- Etiqueta y campo para el precio de la flor -->
+                    <label for="precio">Precio</label>
+                    <input type="number" class="form-control" id="precio" name="precio" th:field="*{precio}" placeholder="Ingrese el precio de la flor" required>
+                </div>
+                <div class="form-group">
+                    <!-- Etiqueta y campo para subir una imagen de la flor -->
+                    <label for="file">Subir Imagen</label>
+                    <input type="file" class="form-control" id="file" name="file" />
+                </div>
+                <!-- Botón para enviar el formulario -->
+                <button type="submit" class="btn btn-primary">Guardar</button>
+            </form>
+            <!-- Mostrar un mensaje si está presente en el modelo -->
+            <div th:if="${message}">
+                <h2 th:text="${message}"></h2>
+            </div>
+        </div>
+    </div>
+
+    <!-- Enlaces a los scripts de Bootstrap y Popper.js -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
