@@ -1,6 +1,6 @@
 package com.iudigital.floristeria.services.dtos;
 
-import java.time.LocalDate;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,11 +10,7 @@ import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
 
-public class GestionEntregaDto {
-
-    private String conductor;
-    private String ruta;
-    private LocalDate fechaEntrega;
-    private String estado;
-    
+public class CreacionArreglosDto {
+    private String follaje;
+    private String adornos;
 }

@@ -4,7 +4,6 @@ import com.iudigital.floristeria.models.GestionPedidos;
 import com.iudigital.floristeria.services.GestionPedidosService;
 import com.iudigital.floristeria.services.dtos.GestionPedidosDto;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
