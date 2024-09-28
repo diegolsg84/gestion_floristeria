@@ -1,5 +1,6 @@
 package com.iudigital.floristeria.models;
 
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Table;
@@ -10,7 +11,9 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity
 @Table(name = "variedad_flores")
+
 public class VariedadFlores {
     @jakarta.persistence.Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

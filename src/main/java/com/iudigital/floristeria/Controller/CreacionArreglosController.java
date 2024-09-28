@@ -35,12 +35,12 @@ public class CreacionArreglosController {
     }
 
     @PostMapping("/crear")
-    public ResponseEntity<CreacionArreglos> saveentrega(@RequestBody CreacionArreglos Creacion) {
+    public ResponseEntity<CreacionArreglos> savecreacion(@RequestBody CreacionArreglos Creacion) {
         CreacionArreglos savedCreacion = creacionArreglosService.save(Creacion);
         return new ResponseEntity<>(savedCreacion, HttpStatus.CREATED);
     }
     @PutMapping("/actualizar/{id}")
-    public ResponseEntity<CreacionArreglos> updateentrega(@PathVariable Long id, @RequestBody CreacionArreglosDto CreacionDto) {
+    public ResponseEntity<CreacionArreglos> updatecreacion(@PathVariable Long id, @RequestBody CreacionArreglosDto CreacionDto) {
         CreacionArreglos actualizado = creacionArreglosService.updatecreacion(id, CreacionDto);
         return ResponseEntity.ok(actualizado);
     }
