@@ -16,8 +16,6 @@ public class CreacionArreglos {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private  Long Id;
-    @Column(name = "variedad_flores")
-    private String variedadFlores;
     private String follaje;
     private String adornos;
 
