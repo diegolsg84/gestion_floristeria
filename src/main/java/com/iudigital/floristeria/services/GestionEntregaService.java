@@ -31,6 +31,8 @@ public class GestionEntregaService {
             GestionEntrega entrega = entregaExistente.get();
             entrega.setConductor(entregasDto.getConductor());
             entrega.setEstado(entregasDto.getEstado());
+            
+
 
 
             return entregaRepository.save(entrega);
