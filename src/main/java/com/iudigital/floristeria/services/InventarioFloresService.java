@@ -2,39 +2,45 @@ package com.iudigital.floristeria.services;
 
 import com.iudigital.floristeria.Repository.InventarioFloresRepository;
 import com.iudigital.floristeria.models.InventarioFlores;
+import com.iudigital.floristeria.services.dtos.InventarioFloresDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
+import jakarta.persistence.EntityNotFoundException;
 import java.util.List;
+import java.util.Optional;
+
 @Service
 public class InventarioFloresService {
     @Autowired
-    private InventarioFloresRepository floresRepository;
-
-//    public List<InventarioFlores> getAll() {
-//        List<InventarioFlores> flores = new ArrayList<>();
-//        floresRepository.findAll().forEach(idInventario -> flores.add(idInventario.getId()));
-//        return flores;
-//    }
-
-
-    public InventarioFlores save(InventarioFlores flores) {
-        floresRepository.save(flores);
-        return flores;
+    private InventarioFloresRepository inventarioFloresRepository;
+    public Optional<InventarioFlores> getinventarioFlores(Long id){
+        return inventarioFloresRepository.findById(id);
+    }
+    public List<InventarioFlores> getAll() {
+        return  inventarioFloresRepository.findAll();
     }
 
-//
-//    public void delete(int idInventario) {
-//        floresRepository.deleteById(idInventario);
-//
-//    }
+    public InventarioFlores save(InventarioFlores inventarioFlores) {
+        return inventarioFloresRepository.save(inventarioFlores);
+    }
+
+    public InventarioFlores updateinventarioFlores(Long id, InventarioFloresDto inventarioFloresDto) {
+        Optional<InventarioFlores> inventarioFloresExistente = inventarioFloresRepository.findById(id);
+        if (inventarioFloresExistente.isPresent()) {
+            InventarioFlores inventarioFlores = inventarioFloresExistente.get();
+            inventarioFlores.setCantidadDisponible(inventarioFloresDto.getCantidadDisponible());
+            inventarioFlores.setColor(inventarioFloresDto.getColor());
+            inventarioFlores.setPrecioCompra(inventarioFloresDto.getPrecioCompra());
+            inventarioFlores.setPrecioVenta(inventarioFloresDto.getPrecioVenta());
+            inventarioFlores.setTipoFlores(inventarioFloresDto.getTipoFlores());
+            inventarioFlores.setVariedad(inventarioFloresDto.getVariedad());
+        
 
 
-//    public InventarioFlores getClient(int idInventario) {
-//        return floresRepository.findById(idInventario);
-//    }
 
-
-
+            return inventarioFloresRepository.save(inventarioFlores);
+        } else {
+            throw new EntityNotFoundException("inventarioFlores no encontrado");
+        }
+    }
 }
