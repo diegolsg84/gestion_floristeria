@@ -14,12 +14,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.iudigital.floristeria.models.finanzas;
+import com.iudigital.floristeria.models.Finanzas;
 import com.iudigital.floristeria.services.FinanzasService;
 import com.iudigital.floristeria.services.dtos.finanzasDto;
 
 @RestController
-@RequestMapping("/finanzas")
+@RequestMapping("/Finanzas")
 
 public class FinanzasController {
     
@@ -27,23 +27,23 @@ public class FinanzasController {
     private FinanzasService FinanzasService;
 
     @GetMapping("/{id}")
-    public Optional<finanzas> findById(@PathVariable("id") Long id){
-        return FinanzasService.getfinanzas(id);
+    public Optional<Finanzas> findById(@PathVariable("id") Long id){
+        return FinanzasService.getFinanzas(id);
     }
 
     @GetMapping("/lista")
-    public List<finanzas> findAll() {
+    public List<Finanzas> findAll() {
         return FinanzasService.getAll();
     }
 
     @PostMapping("/crear")
-    public ResponseEntity<finanzas> savefinanzas(@RequestBody finanzas finanzas) {
-        finanzas savedfinanzas = FinanzasService.save(finanzas);
-        return new ResponseEntity<>(savedfinanzas, HttpStatus.CREATED);
+    public ResponseEntity<Finanzas> saveFinanzas(@RequestBody Finanzas Finanzas) {
+        Finanzas savedFinanzas = FinanzasService.save(Finanzas);
+        return new ResponseEntity<>(savedFinanzas, HttpStatus.CREATED);
     }
     @PutMapping("/actualizar/{id}")
-    public ResponseEntity<finanzas> updatefinanzas(@PathVariable Long id, @RequestBody finanzasDto finanzasDto) {
-        finanzas actualizado = FinanzasService.updatefinanzas(id, finanzasDto);
+    public ResponseEntity<Finanzas> updateFinanzas(@PathVariable Long id, @RequestBody finanzasDto FinanzasDto) {
+        Finanzas actualizado = FinanzasService.updateFinanzas(id, FinanzasDto);
         return ResponseEntity.ok(actualizado);
     }
 }
