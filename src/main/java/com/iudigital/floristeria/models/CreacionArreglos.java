@@ -6,6 +6,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 
+import java.math.BigDecimal;
+import java.util.List;
+
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -17,5 +21,13 @@ public class CreacionArreglos {
     private  Long Id;
     private String follaje;
     private String adornos;
+    @ManyToOne
+    @JoinColumn(name = "gestion_pedidos_id")
+    private GestionPedidos gestionPedidos;
+    @ManyToOne
+    @JoinColumn(name = "inventario_flores_id") // Relación con InventarioFlores
+    private InventarioFlores inventarioFlores;
+    @OneToMany(mappedBy = "creacionArreglos", cascade = CascadeType.ALL)
+    private List<VariedadFlores> variedadesFlores;
 
 }

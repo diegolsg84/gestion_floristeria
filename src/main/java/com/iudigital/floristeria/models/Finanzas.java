@@ -12,7 +12,7 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @Entity
 @Table(name = "finanzas")
-public class finanzas {
+public class Finanzas {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -25,4 +25,7 @@ public class finanzas {
     @Column(name = "costos_adicionales")
     private BigDecimal costosAdicionales;
     private BigDecimal total;
+    @ManyToOne
+    @JoinColumn(name = "gestion_pedidos_id")
+    private GestionPedidos gestionPedidos;
 }

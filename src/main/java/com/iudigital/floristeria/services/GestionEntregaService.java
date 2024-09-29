@@ -14,7 +14,8 @@ import org.springframework.stereotype.Service;
 public class GestionEntregaService {
     @Autowired
     private GestionEntregaRepository entregaRepository;
-    public Optional<GestionEntrega> getentrega(Long id){
+
+    public Optional<GestionEntrega> getEntrega(Long id){
         return entregaRepository.findById(id);
     }
     public List<GestionEntrega> getAll() {
@@ -22,6 +23,7 @@ public class GestionEntregaService {
     }
 
     public GestionEntrega save(GestionEntrega entregas) {
+
         return entregaRepository.save(entregas);
     }
 
@@ -33,8 +35,6 @@ public class GestionEntregaService {
             entrega.setEstado(entregasDto.getEstado());
             entrega.setRuta(entregasDto.getRuta());
             entrega.setFechaEntrega(entregasDto.getFechaEntrega());
-
-
 
             return entregaRepository.save(entrega);
         } else {

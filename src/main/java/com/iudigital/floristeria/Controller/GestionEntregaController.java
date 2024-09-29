@@ -26,7 +26,7 @@ public class GestionEntregaController {
 
     @GetMapping("/{id}")
     public Optional<GestionEntrega> findById(@PathVariable("id") Long id){
-        return entregasService.getentrega(id);
+        return entregasService.getEntrega(id);
     }
 
     @GetMapping("/lista")
