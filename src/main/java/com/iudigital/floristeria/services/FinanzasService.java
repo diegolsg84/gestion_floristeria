@@ -1,7 +1,7 @@
 package com.iudigital.floristeria.services;
 
 import com.iudigital.floristeria.Repository.FinanzasRepository;
-import com.iudigital.floristeria.models.finanzas;
+import com.iudigital.floristeria.models.Finanzas;
 import com.iudigital.floristeria.services.dtos.finanzasDto;
 import jakarta.persistence.EntityNotFoundException;
 
@@ -13,33 +13,33 @@ import org.springframework.stereotype.Service;
 @Service
 public class FinanzasService {
     @Autowired
-    private FinanzasRepository finanzasRepository;
-    public Optional<finanzas> getfinanzas(Long id){
-        return finanzasRepository.findById(id);
+    private FinanzasRepository FinanzasRepository;
+    public Optional<Finanzas> getFinanzas(Long id){
+        return FinanzasRepository.findById(id);
     }
-    public List<finanzas> getAll() {
-        return  finanzasRepository.findAll();
-    }
-
-    public finanzas save(finanzas finanzass) {
-        return finanzasRepository.save(finanzass);
+    public List<Finanzas> getAll() {
+        return  FinanzasRepository.findAll();
     }
 
-    public finanzas updatefinanzas(Long id, finanzasDto finanzassDto) {
-        Optional<finanzas> finanzasExistente = finanzasRepository.findById(id);
-        if (finanzasExistente.isPresent()) {
-            finanzas finanzas = finanzasExistente.get();
-            finanzas.setCostosAdicionales(finanzassDto.getCostosAdicionales());
-            finanzas.setDetallePedido(finanzassDto.getDetallePedido());
-            finanzas.setOrdenCompletada(finanzassDto.getOrdenCompletada());
-            finanzas.setPrecioFlores(finanzassDto.getPrecioFlores());
-            finanzas.setTotal(finanzassDto.getTotal());
+    public Finanzas save(Finanzas Finanzass) {
+        return FinanzasRepository.save(Finanzass);
+    }
+
+    public Finanzas updateFinanzas(Long id, finanzasDto FinanzassDto) {
+        Optional<Finanzas> FinanzasExistente = FinanzasRepository.findById(id);
+        if (FinanzasExistente.isPresent()) {
+            Finanzas Finanzas = FinanzasExistente.get();
+            Finanzas.setCostosAdicionales(FinanzassDto.getCostosAdicionales());
+            Finanzas.setDetallePedido(FinanzassDto.getDetallePedido());
+            Finanzas.setOrdenCompletada(FinanzassDto.getOrdenCompletada());
+            Finanzas.setPrecioFlores(FinanzassDto.getPrecioFlores());
+            Finanzas.setTotal(FinanzassDto.getTotal());
 
 
 
-            return finanzasRepository.save(finanzas);
+            return FinanzasRepository.save(Finanzas);
         } else {
-            throw new EntityNotFoundException("finanzas no encontrado");
+            throw new EntityNotFoundException("Finanzas no encontrado");
         }
     }
 }

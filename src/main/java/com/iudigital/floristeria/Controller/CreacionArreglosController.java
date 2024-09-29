@@ -26,22 +26,22 @@ public class CreacionArreglosController {
 
     @GetMapping("/{id}")
     public Optional<CreacionArreglos> findById(@PathVariable("id") Long id){
-        return creacionArreglosService.getcreacion(id);
+        return creacionArreglosService.obtenerArregloPorId(id);
     }
 
     @GetMapping("/lista")
     public List<CreacionArreglos> findAll() {
-        return creacionArreglosService.getAll();
+        return creacionArreglosService.obtenerTodosLosArreglos();
     }
 
     @PostMapping("/crear")
     public ResponseEntity<CreacionArreglos> savecreacion(@RequestBody CreacionArreglos Creacion) {
-        CreacionArreglos savedCreacion = creacionArreglosService.save(Creacion);
+        CreacionArreglos savedCreacion = creacionArreglosService.crearArreglo(Creacion);
         return new ResponseEntity<>(savedCreacion, HttpStatus.CREATED);
     }
     @PutMapping("/actualizar/{id}")
-    public ResponseEntity<CreacionArreglos> updatecreacion(@PathVariable Long id, @RequestBody CreacionArreglosDto CreacionDto) {
-        CreacionArreglos actualizado = creacionArreglosService.updatecreacion(id, CreacionDto);
+    public ResponseEntity<CreacionArreglos> updatecreacion(@PathVariable Long id, @RequestBody CreacionArreglos creacionDto) {
+        CreacionArreglos actualizado = creacionArreglosService.actualizarArreglo(id, creacionDto);
         return ResponseEntity.ok(actualizado);
     }
 }
