@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Actualizar Inventario de Flores</title>
+</head>
+<body>
+    <a href="/flores">Home</a>
+    <h1>Actualizar Flor</h1>
+    <form action="#" th:action="@{/Inventario/actualizar/{id}(id=${inventario.id})}" th:object="${inventario}" method="post">
+        <label for="tipoFlores">Tipo:</label>
+        <input type="text" id="tipoFlores" th:field="*{tipoFlores}" required />
+        
+        <label for="color">Color:</label>
+        <input type="text" id="color" th:field="*{color}" required />
+        
+        <label for="variedad">Variedad:</label>
+        <input type="text" id="variedad" th:field="*{variedad}" required />
+        
+        <label for="cantidadDisponible">Cantidad Disponible:</label>
+        <input type="number" id="cantidadDisponible" th:field="*{cantidadDisponible}" required />
+        
+        <label for="precioCompra">Precio de Compra:</label>
+        <input type="number" step="0.01" id="precioCompra" th:field="*{precioCompra}" required />
+        
+        <label for="precioVenta">Precio de Venta:</label>
+        <input type="number" step="0.01" id="precioVenta" th:field="*{precioVenta}" required />
+
+        <button type="submit">Actualizar</button>
+    </form>
+    <a href="/flores/Inventario/lista">Regresar</a>
+</body>
+</html>

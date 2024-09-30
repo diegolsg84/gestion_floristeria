@@ -50,4 +50,12 @@ public class GestionPedidosService {
             throw new EntityNotFoundException("Pedido no encontrado");
         }
     }
+
+    public void deletePedido(Long id) {
+        if (pedidosRepository.existsById(id)) {
+            pedidosRepository.deleteById(id);
+        } else {
+            throw new EntityNotFoundException("Pedido no encontrado");
+        }
+    }
 }
