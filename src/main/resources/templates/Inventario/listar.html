@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Lista de Inventario de Flores</title>
+    <script>
+        function deleteInventario(id) {
+            if (confirm('¿Estás seguro de que quieres eliminar esta flor?')) {
+                fetch(`/flores/Inventario/eliminar/${id}`, {
+                    method: 'DELETE'
+                })
+                .then(response => {
+                    console.log('Response status:', response.status); // Agrega esta línea
+                    if (response.ok) {
+                        window.location.reload(); // Recargar la lista
+                    } else {
+                        alert('Error al eliminar la flor: ' + response.statusText);
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+            }
+        }
+    </script>
+</head>
+<body>
+    <a href="/flores">Home</a>
+    <h1>Inventario de Flores</h1>
+    
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Tipo</th>
+                <th>Color</th>
+                <th>Variedad</th>
+                <th>Cantidad Disponible</th>
+                <th>Precio Compra</th>
+                <th>Precio Venta</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="flor : ${inventarios}">
+                <td th:text="${flor.id}"></td>
+                <td th:text="${flor.tipoFlores}"></td>
+                <td th:text="${flor.color}"></td>
+                <td th:text="${flor.variedad}"></td>
+                <td th:text="${flor.cantidadDisponible}"></td>
+                <td th:text="${flor.precioCompra}"></td>
+                <td th:text="${flor.precioVenta}"></td>
+                <td>
+                    <a th:href="@{/Inventario/actualizar/{id}(id=${flor.id})}">Actualizar</a>
+                    <a href="#" th:onclick="'deleteInventario(' + ${flor.id} + '); return false;'">Eliminar</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <a href="/flores/Inventario/crear">Agregar Nueva Flor</a>
+</body>
+</html>

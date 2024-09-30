@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Listado de Pedidos</title>
+</head>
+<body>
+    <a href="/flores">Home</a>
+<h1>Listado de Pedidos</h1>
+<table border="1">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre Cliente</th>
+            <th>Apellido Cliente</th>
+            <th>Email Cliente</th>
+            <th>Teléfono Cliente</th>
+            <th>Dirección Cliente</th>
+            <th>Tipo de Arreglo</th>
+            <th>Ocasión</th>
+            <th>Fecha de Entrega</th>
+            <th>Presupuesto</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="pedido : ${pedidos}">
+            <td th:text="${pedido.id}"></td>
+            <td th:text="${pedido.nombreCliente}"></td>
+            <td th:text="${pedido.apellidoCliente}"></td>
+            <td th:text="${pedido.emailCliente}"></td>
+            <td th:text="${pedido.telefonoCliente}"></td>
+            <td th:text="${pedido.direccionCliente}"></td>
+            <td th:text="${pedido.tipoArreglo}"></td>
+            <td th:text="${pedido.ocasion}"></td>
+            <td th:text="${pedido.fechaEntrega}"></td>
+            <td th:text="${pedido.presupuesto}"></td>
+            <td th:text="${pedido.estado}"></td>
+            <td>
+                <a th:href="@{/pedidos/editar/{id}(id=${pedido.id})}">Editar</a>
+                <a th:href="@{/pedidos/eliminar/{id}(id=${pedido.id})}">Eliminar</a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<a href="/flores/pedidos/nuevo">Nuevo Pedido</a>
+</body>
+</html>

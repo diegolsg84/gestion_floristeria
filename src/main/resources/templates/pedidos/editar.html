@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Editar Pedido</title>
+</head>
+<body>
+    <a href="/flores">Home</a>   
+<h1>Editar Pedido</h1>
+<form action="#" th:action="@{/pedidos/actualizar/{id}(id=${pedido.id})}" th:object="${pedido}" method="post">
+    <label for="nombreCliente">Nombre:</label>
+    <input type="text" id="nombreCliente" th:field="*{nombreCliente}" required /><br/>
+
+    <label for="apellidoCliente">Apellido:</label>
+    <input type="text" id="apellidoCliente" th:field="*{apellidoCliente}" required /><br/>
+
+    <label for="emailCliente">Email:</label>
+    <input type="email" id="emailCliente" th:field="*{emailCliente}" required /><br/>
+
+    <label for="direccionCliente">Dirección:</label>
+    <input type="text" id="direccionCliente" th:field="*{direccionCliente}" required /><br/>
+
+    <label for="telefonoCliente">Teléfono:</label>
+    <input type="text" id="telefonoCliente" th:field="*{telefonoCliente}" required /><br/>
+
+    <label for="tipoArreglo">Tipo de Arreglo:</label>
+    <input type="text" id="tipoArreglo" th:field="*{tipoArreglo}" required /><br/>
+
+    <label for="ocasion">Ocasión:</label>
+    <input type="text" id="ocasion" th:field="*{ocasion}" required /><br/>
+
+    <label for="fechaEntrega">Fecha de Entrega:</label>
+    <input type="date" id="fechaEntrega" th:field="*{fechaEntrega}" required /><br/>
+
+    <label for="presupuesto">Presupuesto:</label>
+    <input type="number" id="presupuesto" th:field="*{presupuesto}" required /><br/>
+
+    <label for="estado">Estado:</label>
+    <select id="estado" th:field="*{estado}">
+        <option value="en curso">En Curso</option>
+        <option value="completado">Completado</option>
+        <option value="entregado">Entregado</option>
+    </select><br/>
+
+    <button type="submit">Actualizar Pedido</button>
+</form>
+<a href="/flores/pedidos">Volver</a>
+</body>
+</html>
