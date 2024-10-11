@@ -38,4 +38,10 @@ public class VariedadFloresController {
         VariedadFlores actualizado = variedadFloresService.updateVariedadFlores(id, variedadFloresDto);
         return ResponseEntity.ok(actualizado);
     }
+
+    @PostMapping("/restar-inventario/{id}")
+    public ResponseEntity<Void> restarInventario(@PathVariable Long id) {
+        variedadFloresService.restarInventario(id);
+        return ResponseEntity.ok().build();  
+    }
 }

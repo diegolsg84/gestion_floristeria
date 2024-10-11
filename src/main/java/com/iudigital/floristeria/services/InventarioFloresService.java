@@ -6,6 +6,7 @@ import com.iudigital.floristeria.Repository.InventarioFloresRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,6 +28,9 @@ public class InventarioFloresService {
 
     // Guardar un nuevo inventario
     public InventarioFlores save(InventarioFlores inventario) {
+        // Calcular el precio de venta (35% adicional al precio de compra)
+    BigDecimal porcentajeVenta = new BigDecimal("1.35"); 
+    inventario.setPrecioVenta(inventario.getPrecioCompra().multiply(porcentajeVenta));
         return inventarioFloresRepository.save(inventario);
     }
 
@@ -41,7 +45,9 @@ public class InventarioFloresService {
         inventarioFlores.setVariedad(inventarioFloresDto.getVariedad());
         inventarioFlores.setCantidadDisponible(inventarioFloresDto.getCantidadDisponible());
         inventarioFlores.setPrecioCompra(inventarioFloresDto.getPrecioCompra());
-        inventarioFlores.setPrecioVenta(inventarioFloresDto.getPrecioVenta());
+        // Calcular el nuevo precio de venta (35% adicional al precio de compra)
+        BigDecimal porcentajeVenta = new BigDecimal("1.35"); 
+        inventarioFlores.setPrecioVenta(inventarioFloresDto.getPrecioCompra().multiply(porcentajeVenta));
 
         return inventarioFloresRepository.save(inventarioFlores);
     }

@@ -15,14 +15,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.iudigital.floristeria.models.CreacionArreglos;
+import com.iudigital.floristeria.models.VariedadFlores;
 import com.iudigital.floristeria.services.CreacionArreglosService;
 import com.iudigital.floristeria.services.dtos.CreacionArreglosDto;
+import com.iudigital.floristeria.services.VariedadFloresService;
 
 @RestController
 @RequestMapping("/Creacion")
 public class CreacionArreglosController {
     @Autowired
     private CreacionArreglosService creacionArreglosService;
+    @Autowired
+    private VariedadFloresService variedadFloresService;
 
     @GetMapping("/{id}")
     public Optional<CreacionArreglos> findById(@PathVariable("id") Long id){
@@ -37,6 +41,9 @@ public class CreacionArreglosController {
     @PostMapping("/crear")
     public ResponseEntity<CreacionArreglos> savecreacion(@RequestBody CreacionArreglos Creacion) {
         CreacionArreglos savedCreacion = creacionArreglosService.crearArreglo(Creacion);
+        for (VariedadFlores variedad : savedCreacion.getVariedadesFlores()) {
+        variedadFloresService.restarInventario(variedad.getId());
+    }
         return new ResponseEntity<>(savedCreacion, HttpStatus.CREATED);
     }
     @PutMapping("/actualizar/{id}")
