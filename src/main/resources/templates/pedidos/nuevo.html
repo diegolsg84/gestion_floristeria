@@ -82,8 +82,20 @@
         <label for="telefonoCliente">Teléfono:</label>
         <input type="text" id="telefonoCliente" th:field="*{telefonoCliente}" required />
 
-        <label for="tipoArreglo">Tipo de Arreglo:</label>
-        <input type="text" id="tipoArreglo" th:field="*{tipoArreglo}" required />
+        <h2>Arreglo de Flores</h2>
+        <div id="arregloFlores">
+            <div class="flor-item">
+                <select name="tipoArreglo[0].tipoFlores" required>
+                    <option value="">Seleccione un tipo de flor</option>
+                    <option th:each="flor : ${inventarioFlores}" 
+                            th:value="${flor.id}" 
+                            th:text="${flor.tipoFlores}"></option>
+                </select>
+                <input type="number" name="tipoArreglo[0].cantidad" placeholder="Cantidad" required min="1">
+            </div>
+        </div>
+        <button type="button" onclick="agregarFlor()">Agregar otra flor</button>
+
 
         <label for="ocasion">Ocasión:</label>
         <input type="text" id="ocasion" th:field="*{ocasion}" required />
@@ -94,15 +106,47 @@
         <label for="presupuesto">Presupuesto:</label>
         <input type="number" id="presupuesto" th:field="*{presupuesto}" required />
 
-        <label for="estado">Estado:</label>
-        <select id="estado" th:field="*{estado}">
-            <option value="en curso">En Curso</option>
-            <option value="completado">Completado</option>
-            <option value="entregado">Entregado</option>
-        </select>
-
         <button type="submit">Crear Pedido</button>
     </form>
     <a href="/flores/pedidos">Volver</a>
+
+
+    <script>
+        function agregarFlor() {
+        var arregloFlores = document.getElementById('arregloFlores');
+        var index = arregloFlores.children.length;
+        
+        var div = document.createElement('div');
+        div.className = 'flor-item';
+
+        var select = document.createElement('select');
+        select.name = `tipoArreglo[${index}].tipoFlores`;
+        select.required = true;
+
+        var defaultOption = document.createElement('option');
+        defaultOption.value = "";
+        defaultOption.text = "Seleccione un tipo de flor";
+        select.appendChild(defaultOption);
+
+        inventarioFlores.forEach(function(flor) {
+            var option = document.createElement('option');
+            option.value = flor.id;
+            option.text = flor.tipoFlores;
+            select.appendChild(option);
+        });
+
+        var inputCantidad = document.createElement('input');
+        inputCantidad.type = "number";
+        inputCantidad.name = `tipoArreglo[${index}].cantidad`;
+        inputCantidad.placeholder = "Cantidad";
+        inputCantidad.required = true;
+        inputCantidad.min = 1;
+
+        div.appendChild(select);
+        div.appendChild(inputCantidad);
+
+        arregloFlores.appendChild(div);
+    }
+    </script>
 </body>
 </html>

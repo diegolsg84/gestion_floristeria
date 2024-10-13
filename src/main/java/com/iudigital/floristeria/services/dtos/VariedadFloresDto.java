@@ -9,7 +9,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class VariedadFloresDto {
 
-    private String flor;
+    private Long tipoFlores; // Cambiado a Long para almacenar el ID de la flor
+    
     private Long cantidad;
     
 }

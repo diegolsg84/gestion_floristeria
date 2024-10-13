@@ -30,7 +30,7 @@ public class VariedadFloresService {
         if (VariedadFloresExistente.isPresent()) {
             VariedadFlores VariedadFlores = VariedadFloresExistente.get();
             VariedadFlores.setCantidad(VariedadFloresDto.getCantidad());
-            VariedadFlores.setFlor(VariedadFloresDto.getFlor());
+            VariedadFlores.setTipoFlores(VariedadFloresDto.getTipoFlores());
 
 
 

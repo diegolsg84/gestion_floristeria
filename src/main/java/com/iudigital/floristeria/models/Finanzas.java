@@ -29,3 +29,4 @@ public class Finanzas {
     @JoinColumn(name = "gestion_pedidos_id")
     private GestionPedidos gestionPedidos;
 }
+

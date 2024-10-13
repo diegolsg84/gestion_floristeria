@@ -27,7 +27,5 @@ public class InventarioFlores {
     private BigDecimal precioCompra;
     @Column(name = "precio_venta")
     private BigDecimal precioVenta;
-    @OneToMany(mappedBy = "inventarioFlores")
-    private List<CreacionArreglos> creacionArreglos;
 
 }

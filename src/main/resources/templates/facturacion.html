@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Facturación</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        h1, h2, h3 {
+            color: #4CAF50;
+        }
+        h1 {
+            text-align: center;
+        }
+        a {
+            display: inline-block;
+            margin: 10px 0;
+            text-decoration: none;
+            color: white;
+            background-color: #4CAF50;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        a:hover {
+            background-color: #45a049;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            background: white;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        tr:hover {
+            background-color: #ddd;
+        }
+        div {
+            background-color: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        p {
+            margin: 5px 0;
+        }
+        strong {
+            color: #4CAF50;
+        }
+    </style>
+</head>
+<body>
+    <h1>Facturación del Pedido</h1>
+    <div>
+        <h2>Detalles del Cliente</h2>
+        <p><strong>Nombre:</strong> <span th:text="${pedido.nombreCliente + ' ' + pedido.apellidoCliente}"></span></p>
+        <p><strong>Email:</strong> <span th:text="${pedido.emailCliente}"></span></p>
+        <p><strong>Dirección:</strong> <span th:text="${pedido.direccionCliente}"></span></p>
+        <p><strong>Teléfono:</strong> <span th:text="${pedido.telefonoCliente}"></span></p>
+    </div>
+    
+    <div>
+        <h2>Detalles del Pedido</h2>
+        <p><strong>Ocasión:</strong> <span th:text="${pedido.ocasion}"></span></p>
+        <p><strong>Fecha de Entrega:</strong> <span th:text="${pedido.fechaEntrega}"></span></p>
+        
+        <h3>Arreglo de Flores</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Tipo de Flor</th>
+                    <th>Cantidad</th>
+                    <th>Precio Unitario</th>
+                    <th>Subtotal</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="variedad : ${pedido.tipoArreglo}">
+                    <td th:text="${variedad.tipoFlores}"></td>
+                    <td th:text="${variedad.cantidad}"></td>
+                    <td th:text="${inventarioUtil.getPrecioVenta(variedad.tipoFlores)}"></td>
+                    <td th:text="${variedad.cantidad * inventarioUtil.getPrecioVenta(variedad.tipoFlores)}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <div>
+        <h2>Resumen de Costos</h2>
+        <p><strong>Precio de las Flores:</strong> $<span th:text="${finanzas.precioFlores}"></span></p>
+        <p><strong>Costos Adicionales (20%):</strong> $<span th:text="${finanzas.costosAdicionales}"></span></p>
+        <p><strong>Total: $<span th:text="${finanzas.total}"></span></strong></p>
+    </div>
+    
+    <a href="/flores/pedidos">Volver a la lista de pedidos</a>
+</body>
+</html>

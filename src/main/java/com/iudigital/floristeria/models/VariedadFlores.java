@@ -1,30 +1,28 @@
 package com.iudigital.floristeria.models;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Table;
-
 import jakarta.persistence.*;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Table(name = "variedad_flores")
-
 public class VariedadFlores {
-    @jakarta.persistence.Id
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private  Long Id;
-    private String flor;
+    private Long id;
+    
+    @Column(name = "tipo_flores")
+    private Long tipoFlores; // Cambiado a Long para almacenar el ID de la flor
+    
     private Long cantidad;
+    
     @ManyToOne
-    @JoinColumn(name = "creacion_arreglos_id")
-    private CreacionArreglos creacionArreglos;
+    @JoinColumn(name = "gestion_pedidos_id")
+    private GestionPedidos gestionPedidos;
 }

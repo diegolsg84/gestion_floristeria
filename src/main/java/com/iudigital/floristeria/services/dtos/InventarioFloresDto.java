@@ -16,3 +16,4 @@ public class InventarioFloresDto {
     private BigDecimal precioCompra;
     private BigDecimal precioVenta;
 }
+
