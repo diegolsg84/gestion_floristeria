@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.hibernate.mapping.Collection;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
